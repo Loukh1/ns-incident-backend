@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Incident Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            padding: 20px 30px;
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .details {
+            margin: 20px 0;
+        }
+
+        .details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .details th, .details td {
+            text-align: left;
+            padding: 10px;
+        }
+
+        .details th {
+            background-color: #f0f0f0;
+            width: 150px;
+        }
+
+        .severity-high {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .severity-medium {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        .severity-low {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🚨 Incident Report</h1>
+    </div>
+
+    <div class="details">
+        <table>
+            <tr>
+                <th>Incident ID:</th>
+                <td th:text="${incidentId}">INC12345</td>
+            </tr>
+            <tr>
+                <th>Source:</th>
+                <td th:text="${source}">System A</td>
+            </tr>
+            <tr>
+                <th>Subject:</th>
+                <td th:text="${subject}">Database Down</td>
+            </tr>
+            <tr>
+                <th>Description:</th>
+                <td th:text="${description}">The database service is unreachable.</td>
+            </tr>
+            <td th:switch="${severity.toLowerCase()}">
+                <span th:case="'high'" class="severity-high" th:text="${severity}"></span>
+                <span th:case="'warning'" class="severity-medium" th:text="${severity}"></span>
+                <span th:case="* " class="severity-low" th:text="${severity}"></span>
+            </td>
+
+
+            <tr>
+                <th>Timestamp:</th>
+                <td th:text="${timestamp}">2025-11-19 13:00</td>
+            </tr>
+            <tr>
+                <th>AI Response:</th>
+                <td th:text="${aiResponse}">Investigate the database logs immediately.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        This is an automated notification from NS Monitoring System. Please do not reply.
+    </div>
+</div>
+</body>
+</html>
