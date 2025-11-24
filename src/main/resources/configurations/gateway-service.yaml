@@ -11,7 +11,7 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "ns-incident-hub"
+            allowedOrigins: "ns-incident-hub.webapps.svc.cluster.local"
             allowedMethods:
               - GET
               - POST
