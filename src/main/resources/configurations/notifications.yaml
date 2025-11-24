@@ -3,7 +3,7 @@ server:
 spring:
   kafka:
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: 192.168.228.134:9092
       group-id: notification-group-1
       auto-offset-reset: latest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -14,7 +14,7 @@ spring:
         spring.json.value.default.type: java.util.HashMap
 
   mail:
-    host: localhost
+    host: 192.168.228.134
     port: 1025
     username: louay
     password: louay
