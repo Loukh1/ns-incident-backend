@@ -1,0 +1,3 @@
+com\ns\notifications\KafkaConsumerTest.class
+com\ns\notifications\EmailServiceTest.class
+com\ns\notifications\NotificationsApplicationTests.class
