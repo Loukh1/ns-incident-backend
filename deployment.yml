@@ -1,0 +1,166 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: webapps
+---
+# Deployment for ns-incident-hub
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-incident-hub
+  namespace: webapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-incident-hub
+  template:
+    metadata:
+      labels:
+        app: ns-incident-hub
+    spec:
+      containers:
+        - name: ns-incident-hub
+          image: louaykh1/ns-incident-hub
+          ports:
+            - containerPort: 8088
+---
+# Service for ns-incident-hub (exposed)
+apiVersion: v1
+kind: Service
+metadata:
+  name: ns-incident-hub-svc
+  namespace: webapps
+spec:
+  type: LoadBalancer
+  selector:
+    app: ns-incident-hub
+  ports:
+    - protocol: TCP
+      port: 8088
+      targetPort: 8088
+---
+# Deployment for ns-orchestrator
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-orchestrator
+  namespace: webapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-orchestrator
+  template:
+    metadata:
+      labels:
+        app: ns-orchestrator
+    spec:
+      containers:
+        - name: ns-orchestrator
+          image: louaykh1/ns-orchestrator
+          ports:
+            - containerPort: 8070
+---
+# Deployment for ns-notifications
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-notifications
+  namespace: webapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-notifications
+  template:
+    metadata:
+      labels:
+        app: ns-notifications
+    spec:
+      containers:
+        - name: ns-notifications
+          image: louaykh1/ns-notifications
+          ports:
+            - containerPort: 8040
+---
+# Deployment for ns-gateway
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-gateway
+  namespace: webapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-gateway
+  template:
+    metadata:
+      labels:
+        app: ns-gateway
+    spec:
+      containers:
+        - name: ns-gateway
+          image: louaykh1/ns-gateway
+          ports:
+            - containerPort: 8222
+---
+# Service for ns-gateway (exposed)
+apiVersion: v1
+kind: Service
+metadata:
+  name: ns-gateway-svc
+  namespace: webapps
+spec:
+  type: LoadBalancer
+  selector:
+    app: ns-gateway
+  ports:
+    - protocol: TCP
+      port: 8222
+      targetPort: 8222
+---
+# Deployment for ns-config-server
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-config-server
+  namespace: webapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-config-server
+  template:
+    metadata:
+      labels:
+        app: ns-config-server
+    spec:
+      containers:
+        - name: ns-config-server
+          image: louaykh1/ns-config-server
+          ports:
+            - containerPort: 8888
+---
+# Deployment for ns-discovery
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-discovery
+  namespace: webapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-discovery
+  template:
+    metadata:
+      labels:
+        app: ns-discovery
+    spec:
+      containers:
+        - name: ns-discovery
+          image: louaykh1/ns-discovery
+          ports:
+            - containerPort: 8761
