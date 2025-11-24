@@ -1,5 +1,5 @@
 spring:
   config:
-    import: optional:configserver:config-server:8888
+    import: optional:configserver:ns-config-server.webapps.svc.cluster.local:8888
   application:
     name: gateway-service
