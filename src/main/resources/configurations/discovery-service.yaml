@@ -1,6 +1,6 @@
 eureka:
   instance:
-    hostname: discovery-service
+    hostname: ns-discovery.webapps.svc.cluster.local
   client:
     register-with-eureka: false
     fetchRegistry: false
