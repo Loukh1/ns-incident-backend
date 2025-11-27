@@ -26,6 +26,7 @@ pipeline {
                 echo 'No vulnerabilities found!'
             }
         }
+        
         stage('Build & Tag Docker Image') {
             steps {
                 script {
